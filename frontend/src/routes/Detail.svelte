@@ -4,7 +4,7 @@
     export let params = {}
     //Detail 컴포넌트를 호출할때 전달한 파라미터 값을 읽으려면 다음과 같이 params 변수를 선언
     let question_id = params.question_id
-    let question = {} 
+    let question = {answers:[]} 
     let content = ""
 
     function get_question() {
@@ -33,6 +33,11 @@
 <div> 
     {question.content}
 </div>
+<ul>
+    {#each question.answers as answer} 
+        <li>{answer.content}</li>
+    {/each} 
+</ul>
 <form method="post">
     <textarea rows="15" bind:value={content}></textarea> 
     <input type="submit" value="답변 등록" on:click="{post_answer}">
